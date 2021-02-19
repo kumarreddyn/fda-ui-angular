@@ -18,6 +18,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const MATERIAL_COMPONENTS = [
   MatDialogModule,
@@ -38,7 +41,10 @@ const MATERIAL_COMPONENTS = [
   MatTooltipModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTabsModule,
+  MatGridListModule,
+  MatBadgeModule
 ];
 
 @NgModule({

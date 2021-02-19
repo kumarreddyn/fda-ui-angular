@@ -1,0 +1,61 @@
+{
+    "header": {
+        "world": "Header world",
+        "english": "English",
+        "telugu": "తెలుగు",
+        "register": "Register",
+        "login": "Login"
+    },
+
+    "sideNav": {
+        "home": "Home",
+        "orderHistory": "Order History",
+        "addressBook": "Address Book",
+        "foodOutlets": "Food Outlets",
+        "manageUsers": "Manage Users",
+        "users": "Users",
+        "roles": "Roles"
+    },
+
+    "foodOutlets": {
+        "title": "Food Outlets",
+        "outlet": "Outlet",
+        "location": "Location",
+        "add": "Add Food Outlet",
+        "update": "Update Food Outlet",
+        "delete": "Delete Food Outlet"
+    },
+
+    "foodItems": {
+        "title": "Food Items",
+        "price": "Price",
+        "add": "Add Food Item",
+        "update": "Update Food Item",
+        "delete": "Delete Food Item"
+    },
+
+    "common": {
+        "filter": "Filter",
+        "filterPlaceHolder": "Enter text to filter",
+        "name": "Name",
+        "description": "Description",
+        "photo": "Photo",
+        "add": "Add",
+        "update": "Update",
+        "delete": "Delete",
+        "close": "Close"
+    },
+
+    "users": {
+        "emailAddress": "Email Address",
+        "mobileNumber": "Mobile Number",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+    },
+    "messages": {
+        "invalidRegistrationForm": "Registration form data is invalid",
+        "passwordsMismatch": "Passwords do not match",
+        "noMatchingFilterData": "There is no data matching the filter"
+    }
+    
+}

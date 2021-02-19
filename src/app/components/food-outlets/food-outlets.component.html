@@ -1,1 +1,88 @@
-<p>food-outlets works!</p>
+<mat-card class="m-3">
+    <label class="mat-headline text-primary">{{'foodOutlets.title' | translate}}</label>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{'common.filter' | translate}}</mat-label>
+                <input
+                    matInput
+                    (keyup)="applyFilter($event)"
+                    placeholder="{{'common.filterPlaceHolder' | translate}}"
+                    #input
+                />
+            </mat-form-field>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="photoURL">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'width':'30%'}">{{'common.photo' | translate}}</th>
+            <td mat-cell *matCellDef="let element" >
+              <mat-card class="photo-card-sm"
+               [ngStyle]="{'background-image': 'url(' + generateEncodedFileURI(element.photoURL)  + ')'}">    
+              </mat-card>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'width':'30%'}">{{'common.name' | translate}}</th>
+            <td mat-cell *matCellDef="let element" >{{ element.name }}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'width':'30%'}">{{'foodOutlets.location' | translate}}</th>
+            <td mat-cell *matCellDef="let element" >{{ element.location }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{'width':'30%'}">{{'common.description' | translate}}</th>
+            <td mat-cell *matCellDef="let element" >{{ element.description }}</td>
+          </ng-container>
+          
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'width':'10%'}">
+                <button mat-icon-button color="primary" (click)="displayAddPage()" >
+                    <mat-icon class="mt-2 mr-2 color-red">add</mat-icon>
+                </button>
+            </th>
+
+            <td mat-cell *matCellDef="let row; let i = index" [ngStyle]="{'padding-top':'10px'}">
+
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="goToFoodItems(row)" class="color-red">
+                        <mat-icon class="color-red mr-2">fastfood</mat-icon>
+                        <span>{{'foodItems.title' | translate}}</span>
+                    </button>
+                    <button mat-menu-item (click)="displayUpdatePage(i, row)" class="color-red">
+                        <mat-icon class="color-red mr-2">edit</mat-icon>
+                        <span>{{'common.update' | translate}}</span>
+                    </button>
+                    <button mat-menu-item (click)="displayDeletePage(i, row)" class="color-red">
+                        <mat-icon class="color-red mr-2">delete</mat-icon>
+                        <span>{{'common.delete' | translate}}</span>
+                    </button>
+                </mat-menu>
+            </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+            {{'messages.noMatchingFilterData' | translate}} "{{ input.value }}"
+            </td>
+        </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</mat-card>

@@ -5,40 +5,52 @@
       opened
       [ngStyle]="{ 'width': sideNavWidth, 'transition': 'width 0.6s' }"
       *ngIf="isLoggedIn">
-      <mat-nav-list class="w-100">
+      <mat-nav-list>
         <mat-list-item>
-          <button mat-icon-button [routerLink]="['/home']"><mat-icon class="margin-right-10-px">home</mat-icon>Home</button>
+          <button mat-icon-button class="btn-block" [routerLink]="['/home']">
+            <mat-icon>home</mat-icon>
+            <span class="pl-2">{{'sideNav.home' | translate}}</span>
+          </button>
         </mat-list-item>
   
         <mat-list-item>        
-          <button mat-icon-button [routerLink]="['/user-orders']"><mat-icon class="margin-right-10-px">history</mat-icon>Order History</button>
+          <button mat-icon-button class="btn-block" [routerLink]="['/user-orders']">
+            <mat-icon>history</mat-icon>
+            <span class="pl-2">{{'sideNav.orderHistory' | translate}}</span>
+          </button>
         </mat-list-item>
   
         <mat-list-item>
-          <button mat-icon-button [routerLink]="['/address-book']"><mat-icon class="margin-right-10-px">menu_book</mat-icon>Address Book</button>
+          <button mat-icon-button class="btn-block" [routerLink]="['/address-book']">
+            <mat-icon>menu_book</mat-icon>
+            <span class="pl-2">{{'sideNav.addressBook' | translate}}</span>
+          </button>
         </mat-list-item>
         
         <mat-list-item *ngIf="hasRole(ROLE_MANAGER)">
-          <button mat-icon-button [routerLink]="['/food-outlets']"><mat-icon class="margin-right-10-px">food_bank</mat-icon>Manage Outlets</button>
+          <button mat-icon-button class="btn-block" [routerLink]="['/food-outlets']">
+            <mat-icon>food_bank</mat-icon>
+            <span class="pl-2">{{'sideNav.foodOutlets' | translate}}</span>
+          </button>
         </mat-list-item>
-  
+        
         <mat-list-item *ngIf="hasRole(ROLE_ADMIN)">
-          <button mat-icon-button [matMenuTriggerFor]="userManagementMenu">
-            <mat-icon class="margin-right-10-px">people</mat-icon>Manage User
+          <button mat-icon-button class="btn-block" [matMenuTriggerFor]="userManagementMenu">
+            <mat-icon>people</mat-icon>
+            <span class="pl-2">{{'sideNav.manageUsers' | translate}}</span>
           </button>
         </mat-list-item>
         <mat-menu #userManagementMenu="matMenu">
-          <button mat-menu-item [routerLink]="['/user-management/users']">Users</button>
-          <button mat-menu-item [routerLink]="['/user-management/roles']">Roles</button>
+          <button mat-menu-item [routerLink]="['/user-management/users']">{{'sideNav.users' | translate}}</button>
+          <button mat-menu-item [routerLink]="['/user-management/roles']">{{'sideNav.roles' | translate}}</button>
         </mat-menu>
         
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content
-      id="app-sidenav-content"
-      [ngStyle]="{ 'margin-left': sideNavWidth, 'transition': 'margin-left 0.5s' }"
-    >
-      
+      id="app-sidenav-content" class="pl-2"
+      [ngStyle]="{ 'margin-left': sideNavWidth, 'transition': 'margin-left 0.5s' }">
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

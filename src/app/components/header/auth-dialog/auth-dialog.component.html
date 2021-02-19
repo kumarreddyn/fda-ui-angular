@@ -1,0 +1,71 @@
+<mat-tab-group [selectedIndex]="tabIndex" dynamicHeight>
+    <mat-tab label="{{'header.login' | translate}}">
+      <div class="mt-2"></div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.mobileNumber' | translate}}</mat-label>
+            <input matInput placeholder="{{'users.mobileNumber' | translate}}" formControlName="mobileNumber" required maxlength="255"/>
+            <mat-icon matPrefix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.password' | translate}}</mat-label>
+            <input matInput placeholder="{{'users.password' | translate}}" formControlName="password" 
+            required maxlength="255" type="password"/>
+            <mat-icon matPrefix>lock_outlined</mat-icon>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" class="w-100" type="submit">
+            {{'header.login' | translate}}
+        </button>
+      </form>
+    </mat-tab>
+  
+    <mat-tab label="{{'header.register' | translate}}">
+      <div class="mt-2"></div>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'common.name' | translate}}</mat-label>
+            <input matInput placeholder="{{'common.name' | translate}}" formControlName="name" required maxlength="255"/>
+            <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.emailAddress' | translate}}</mat-label>
+            <input matInput placeholder="{{'common.emailAddress' | translate}}" formControlName="emailAddress" required maxlength="255"/>
+            <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.mobileNumber' | translate}}</mat-label>
+            <input matInput placeholder="{{'users.mobileNumber' | translate}}" formControlName="mobileNumber" required maxlength="255"/>
+            <mat-icon matPrefix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.password' | translate}}</mat-label>
+            <input matInput placeholder="{{'users.password' | translate}}" formControlName="password" 
+            required maxlength="255" type="password"/>
+            <mat-icon matPrefix>lock_outlined</mat-icon>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'users.confirmPassword' | translate}}</mat-label>
+            <input matInput placeholder="{{'users.confirmPassword' | translate}}" formControlName="confirmPassword" 
+            required maxlength="255" type="password"/>
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-error *ngIf="registerForm.errors?.passwordNotMatch && 
+            registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched">
+                {{'messages.passwordsMismatch' | translate}}
+            </mat-error>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" class="w-100" type="submit">
+            {{'header.register' | translate}}
+        </button>
+      </form>
+    </mat-tab>
+
+  </mat-tab-group>
+  

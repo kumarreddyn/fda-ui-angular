@@ -7,12 +7,20 @@
   
     <span class="toolbar-spacer"></span>
   
+    <button mat-icon-button [matMenuTriggerFor]="languageMenu">
+      <mat-icon matBadgeColor="accent">language</mat-icon>
+    </button>
+    <mat-menu #languageMenu="matMenu">
+      <button mat-menu-item (click)="changeLanguage('en')">{{'header.english' | translate}}</button>
+      <button mat-menu-item (click)="changeLanguage('te')">{{'header.telugu' | translate}}</button>
+    </mat-menu>
+
     <div *ngIf="!isLoggedIn">
       <button
         mat-raised-button
         [ngStyle]="{ 'margin-right': '10px' }"
-        (click)="displaySignupPopup()">
-        <mat-icon>person_add</mat-icon> Signup
+        (click)="displayRegisterPopup()">
+        <mat-icon>person_add</mat-icon> Register
       </button>
   
       <button mat-raised-button (click)="displayLoginPopup()">
@@ -21,9 +29,9 @@
     </div>
   
     <div *ngIf="isLoggedIn">
+      
       <button mat-icon-button [routerLink]="'/cart'" class="margin-right-20-px">
-        <mat-icon matBadge="{{ 0 }}" matBadgeColor="accent"
-        >shopping_cart</mat-icon>
+        <mat-icon matBadge="{{ cart?.totalItems }}" matBadgeColor="accent">shopping_cart</mat-icon>
       </button>
   
       <button mat-fab color="primary" [matMenuTriggerFor]="profileMenu" class="background-image"

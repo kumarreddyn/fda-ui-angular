@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class ContentComponent implements OnInit {
 
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   displaySideNavSubject: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -24,10 +25,11 @@ export class ContentComponent implements OnInit {
   sideNavWidth = '50px';
 
   constructor(private breakpointObserver: BreakpointObserver,
-      private commonService: CommonService) { }
+      private commonService: CommonService, private authService: AuthService) { }
 
   ngOnInit(): void {
 
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.commonService.subscribeDisplaySideNavSubject().subscribe(result => {
       this.displaySideNavSubject = result;
       if (!this.displaySideNavSubject) {
@@ -35,6 +37,10 @@ export class ContentComponent implements OnInit {
       } else {
         this.sideNavWidth = '160px';
       }
+    });
+
+    this.authService.subscribeAuthSubject().subscribe(result => {
+      this.isLoggedIn = this.authService.isLoggedIn();
     });
 
   }
